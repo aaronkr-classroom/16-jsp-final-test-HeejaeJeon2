@@ -1,0 +1,34 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <!-- 인증 관리자 설정 -->
+    <bean id="authenticationManager" class="org.springframework.security.authentication.manager.AuthenticationManager">
+        <property name="authenticationProviders">
+            <list>
+                <bean class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+                    <property name="userDetailsService" ref="userDetailsService"/>
+                    <property name="passwordEncoder" ref="passwordEncoder"/>
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+    <!-- UserDetailsService 설정 -->
+    <bean id="userDetailsService" class="org.springframework.security.core.userdetails.memory.InMemoryUserDetailsManager">
+        <constructor-arg>
+            <list>
+                <bean class="org.springframework.security.core.userdetails.User">
+                    <constructor-arg value="user"/>
+                    <constructor-arg value="password"/>
+                    <constructor-arg value="ROLE_USER"/>
+                </bean>
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <!-- 패스워드 인코더 설정 -->
+    <bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+
+</beans>

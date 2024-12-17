@@ -13,7 +13,7 @@
     <meta name="author" content="???" />
     <meta name="description" content="???" />
 
-    <!-- CSS 파일에 대한 link테그를 수정하십시오 -->
+    <!-- CSS 파일에 대한 link태그를 수정하십시오 -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/style.css" />
     <link
       rel="stylesheet"
@@ -23,13 +23,12 @@
     <link href="${pageContext.request.contextPath}/public/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/confetti.css" />
 
-    <!-- JS 파일에 대한 script테그를 수정하십시오 -->
+    <!-- JS 파일에 대한 script태그를 수정하십시오 -->
     <script defer src="${pageContext.request.contextPath}/public/js/functions.js"></script>
   </head>
 
   <body>
     <!-- HEADER -->
-
     <jsp:include page="header.jsp"></jsp:include>
 
     <!-- MAIN 페이지 내용 -->
@@ -47,12 +46,12 @@
           </div>
 
           <div class="col-md-10 mx-auto col-lg-5 mb-5">
-
             <!-- action 속성에서 맞는 파일 경로 입력하세요 -->
             <form
               class="p-4 p-md-5 border rounded-3 bg-light"
               action="./thanks.jsp"
               method="POST"
+              onsubmit="return validateForm(event);" 
             >
               <div class="form-floating mb-3">
                 <input
@@ -120,14 +119,48 @@
               <hr />
             </form>
 
+            <!-- 로그인 폼 추가 부분 -->
+            <h2 class="text-center mb-4">Login</h2>
+            <form
+              class="p-4 p-md-5 border rounded-3 bg-light"
+              action="./login.jsp"
+              method="POST"
+            >
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="loginUsername"
+                  name="username"
+                  placeholder="Username"
+                  required
+                />
+                <label for="loginUsername">Username</label>
+              </div>
+
+              <div class="form-floating mb-3">
+                <input
+                  type="password"
+                  class="form-control"
+                  id="loginPassword"
+                  name="password"
+                  placeholder="Password"
+                  required
+                />
+                <label for="loginPassword">Password</label>
+              </div>
+
+              <button class="w-100 btn btn-lg btn-primary" type="submit">
+                Login
+              </button>
+            </form>
           </div>
         </div>
       </div>
     </main>
 
     <!-- FOOTER -->
-
-	<jsp:include page="footer.jsp"></jsp:include>
+    <jsp:include page="footer.jsp"></jsp:include>
 
     <!-- Bootstrap의 JS -->
     <script src="${pageContext.request.contextPath}/public/js/bootstrap.bundle.min.js"></script>
